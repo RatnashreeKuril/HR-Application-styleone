@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang='en'>
+<head>
+<title>HR Application</title>
+<script>
+function validateForm(frm)
+{
+var title=frm.title.value.trim();
+var titleErrorSection=document.getElementById('titleErrorSection');
+titleErrorSection.innerHTML='';
+if(title.length==0)
+{
+titleErrorSection.innerHTML='Required';
+frm.title.focus();
+return false;
+}
+return true;
+}
+
+function cancelAddition()
+{
+document.getElementById('cancelAdditionForm').submit();
+}
+</script>
+</head>
+<body>
+<!-- Main container starts here -->
+<div style='width:90hw;height:auto;border:1px solid black'>
+<!-- Header starts here -->
+<div style='margin:5px;width:90hw;height:auto;border:1px solid black'>
+<a href='/styleone/index.html'><img src='/styleone/images/logo.png;' style='float:left'></a><div style='margin-top:15px;margin-bottom:15px;font-size:25pt'>Thinking Machines</div>
+</div>
+<!-- Header ends here -->
+<!-- Content-Section starts here -->
+<div style='margin:5px;width:90hw;height:70vh;border:1px solid white'>
+<!-- Left panel starts here -->
+<div style='margin:5px;height:65vh;border:1px solid black;float:left;padding:5px'>
+<b>Designations</b><br>
+<a href='/styleone/employeesView'>Employees</a><br><br>
+<a href='/styleone/index.html'>Home</a>
+</div>
+<!-- Left panel ends here -->
+<!-- Right panel starts here -->
+<div style='margin-top:5px;margin-bottom:5px;margin-right:5px;margin-left:105px;height:65vh;border:1px solid black;padding:5px'>
+<h2>Designation (Add Module)</h2>
+<form action='/styleone/addDesignation' onsubmit='return validateForm(this)'>
+Designation
+<input type='text' id='title' name='title' maxLength='35' size='36'>
+<span id='titleErrorSection' style='color:red'></span><br>
+<button type='submit'>Add</button>
+<button type='Button' onclick='cancelAddition()'>Cancel</button>
+</form>
+</div>
+<!-- Right panel ends here -->
+</div>
+<!-- Content-Section ends here -->
+<!-- Footer starts here -->
+<div style='margin:5px;width:90hw;height:auto;border:1px solid white;text-align:center'>
+&copy; Thinking Machines 2020
+</div>
+<!-- Footer ends here -->
+</div><!-- Main container ends here -->
+<form id='cancelAdditionForm' action='/styleone/designationsView'>
+</form>
+</body>
+</html>

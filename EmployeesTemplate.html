@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html lang='en'>
+<head>
+<title>HR Application</title>
+<script>
+function Employee()
+{
+this.employeeId="";
+this.name="";
+this.designationCode=0;
+this.designation="";
+this.dateOfBirth="";
+this.gender="";
+this.isIndian=true;
+this.basicSalary=0;
+this.panNumber="";
+this.aadharCardNumber="";
+}
+var employees=[];
+var selectedRow=null;
+var employee=new Employee();
+employee.employeeId="A100001";
+employee.name="Mahesh Sharma";
+employee.designationCode=1;
+employee.designation="CEO";
+employee.dateOfBirth="12/10/1987";
+employee.gender="Male";
+employee.isIndian=true;
+employee.basicSalary=500000;
+employee.panNumber="JGH98787";
+employee.aadharCardNumber="JHGJ987677";
+employees[0]=employee;
+
+employee=new Employee();
+employee.employeeId="A100002";
+employee.name="Ramesh Gupta";
+employee.designationCode=3;
+employee.designation="Clerk";
+employee.dateOfBirth="09/04/1983";
+employee.gender="Male";
+employee.isIndian=true;
+employee.basicSalary=400000;
+employee.panNumber="SKJD86876";
+employee.aadharCardNumber="JKHJ86876";
+employees[1]=employee;
+
+function selectEmployee(row,employeeId)
+{
+if(selectedRow==row) return;
+if(selectedRow!=null)
+{
+selectedRow.style.background="white";
+selectedRow.style.color="black";
+}
+row.style.background="#7C7B7B";
+row.style.color="white";
+selectedRow=row;
+var i;
+for(i=0;i<employees.length;i++)
+{
+if(employees[i].employeeId==employeeId)
+{
+break;
+}
+}
+var emp=employees[i];
+document.getElementById("detailPanel_employeeId").innerHTML=emp.employeeId;
+document.getElementById("detailPanel_name").innerHTML=emp.name;
+document.getElementById("detailPanel_designation").innerHTML=emp.designation;
+document.getElementById("detailPanel_dateOfBirth").innerHTML=emp.dateOfBirth;
+document.getElementById("detailPanel_gender").innerHTML=emp.gender;
+if(emp.isIndian)
+{
+document.getElementById("detailPanel_isIndian").innerHTML="Yes";
+}
+else
+{
+document.getElementById("detailPanel_isIndian").innerHTML="No";
+}
+document.getElementById("detailPanel_basicSalary").innerHTML=emp.basicSalary;
+document.getElementById("detailPanel_panNumber").innerHTML=emp.panNumber;
+document.getElementById("detailPanel_aadharCardNumber").innerHTML=emp.aadharCardNumber;
+
+}
+</script>
+</head>
+<body>
+<!-- Main container starts here -->
+<div style='width:90hw;height:auto;border:1px solid black'>
+<!-- Header starts here -->
+<div style='margin:5px;width:90hw;height:auto;border:1px solid black'>
+<a href='/styleone/index.html'><img src='/styleone/images/logo.png;' style='float:left'></a><div style='margin-top:15px;margin-bottom:15px;font-size:25pt'>Thinking Machines</div>
+</div>
+<!-- Header ends here -->
+<!-- Content-Section starts here -->
+<div style='margin:5px;width:90hw;height:70vh;border:1px solid white'>
+<!-- Left panel starts here -->
+<div style='margin:5px;height:65vh;border:1px solid black;float:left;padding:5px'>
+<a href='/styleone/designationsView'>Designations</a><br>
+<b>Employees</b><br><br>
+<a href='/styleone/index.html'>Home</a>
+</div>
+<!-- Left panel ends here -->
+<!-- Right panel starts here -->
+<div style='margin-top:5px;margin-bottom:5px;margin-right:5px;margin-left:105px;height:65vh;border:1px solid black;padding:5px'>
+<h4>Employees</h4>
+<div style='margin-top:5px;margin-bottom:5px;margin-right:5px;margin-left:5px;height:30vh;border:1px solid black;padding:5px;overflow:scroll'>
+<table border='1'>
+<thead>
+<tr>
+<th colspan='6' style='text-align:right;padding:5px'><a href='/styleone/getEmployeeAddForm'>Add employee</a></th>
+</tr>
+<tr>
+<th style='width:60px;text-align:center'>S.No.</th>
+<th style='width:200px;text-align:center'>Id</th>
+<th style='width:200px;text-align:center'>Name</th>
+<th style='width:200px;text-align:center'>Designation</th>
+<th style='width:100px;text-align:center'>Edit</th>
+<th style='width:100px;text-align:center'>Delete</th>
+</tr>
+</thead>
+<tbody>
+<tr style='cursor:pointer' onclick='selectEmployee(this,"A100001")'>
+<td style='text-align:right'>1.</td>
+<td>A100001</td>
+<td>Mahesh Sharma</td>
+<td>CEO</td>
+<td><a href='/styleone/editEmployee?employeeId=A100001'>Edit</a></td>
+<td><a href='/styleone/confirmDeleteEmployee?employeeId=A100001'>Delete</a></td>
+</tr>
+<tr style='cursor:pointer' onclick='selectEmployee(this,"A100002")'>
+<td style='text-align:right'>2.</td>
+<td>A100002</td>
+<td>Ramesh Gupta</td>
+<td>Clerk</td>
+<td><a href='/styleone/editEmployee?employeeId=A100002'>Edit</a></td>
+<td><a href='/styleone/confirmDeleteEmployee?employeeId=A100002'>Delete</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style='margin-top:5px;margin-bottom:5px;margin-right:5px;margin-left:5px;height:25vh;border:1px solid black;padding:5px'>
+<label style='background:gray;color:white;padding-left:5px;padding-right:5px'>Details</label>
+<table border='0' width="100%">
+<tr>
+<td>Employee id : <span id='detailPanel_employeeId' style='margin-right:30px'></span></td>
+<td>Name : <span id='detailPanel_name' style='margin-right:30px'></span></td>
+<td>Designation : <span id='detailPanel_designation' style='margin-right:30px'></span></td>
+</tr>
+<tr>
+<td>Date of birth : <span id='detailPanel_dateOfBirth' style='margin-right:30px'></span></td>
+<td>Gender : <span id='detailPanel_gender' style='margin-right:30px'></span></td>
+<td>Is indian : <span id='detailPanel_isIndian' style='margin-right:30px'></span></td>
+</tr>
+<tr>
+<td>Basic salary : <span id='detailPanel_basicSalary' style='margin-right:30px'></span></td>
+<td>PAN number : <span id='detailPanel_panNumber' style='margin-right:30px'></span></td>
+<td>Aadhar card number : <span id='detailPanel_aadharCardNumber' style='margin-right:30px'></span></td>
+</tr>
+</table>
+</div>
+</div>
+<!-- Right panel ends here -->
+</div>
+<!-- Content-Section ends here -->
+<!-- Footer starts here -->
+<div style='margin:5px;width:90hw;height:auto;border:1px solid white;text-align:center'>
+&copy; Thinking Machines
+</div>
+<!-- Footer ends here -->
+</div><!-- Main container ends here -->
+</body>
+</html>
